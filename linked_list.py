@@ -1,3 +1,6 @@
+# Well, the book doesn't demonstrate any practical 
+# implementation of linked lists, so I had to do my own
+
 class Node:
     def __init__(self, value=None) -> None:
         self.value = value
