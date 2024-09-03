@@ -144,23 +144,3 @@ class LinkedList:
             value = value.get_next()
         string += ']'
         return string
-
-
-a = LinkedList()
-a.push(2)
-print(a.pop_left())
-a.push(3)
-a.push(4)
-a.left_push(1)
-a.push(5)
-a.insert(7, 2)
-a.push(6)
-print(a.pop())
-print(a.pop_left())
-print(a)
-print(a.index_of(5))
-print(a.get_in_index(3))
-print(a.remove(3))
-print(a)
-a.reset()
-print(a)
