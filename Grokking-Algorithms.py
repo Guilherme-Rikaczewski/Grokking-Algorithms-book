@@ -1,7 +1,6 @@
 from collections import deque
-# from random import randint
 
-
+# some simple functions with recursion
 def soma(arr: list):
     if arr == []:
         return 0
@@ -26,7 +25,7 @@ def maior_valor(arr: list):
     sub_maior = maior_valor(arr[1:])
     return arr[0] if arr[0] > sub_maior else sub_maior
 
-
+# implementation suggested by the author
 def binary_search(arr, item):
     high = len(arr) - 1
     floor = 0
@@ -40,8 +39,8 @@ def binary_search(arr, item):
         else:
             high = mid - 1
 
-
-def pesquisa_binaria_recursiva(array, item, floor=0, high=None):
+# implementing recursion to the algorithm
+def recursive_binary_search(array, item, floor=0, high=None):
     if high is None:
         high = len(array) - 1
     if floor > high:
@@ -53,11 +52,11 @@ def pesquisa_binaria_recursiva(array, item, floor=0, high=None):
         return mid
 
     if item > array[mid]:
-        return pesquisa_binaria_recursiva(array, item, mid+1, high)
+        return recursive_binary_search(array, item, mid+1, high)
     else:
-        return pesquisa_binaria_recursiva(array, item, floor, mid-1)
+        return recursive_binary_search(array, item, floor, mid-1)
 
-
+# implementation suggested by the author
 def quicksort(lista):
     if len(lista) < 2:
         return lista
@@ -68,7 +67,7 @@ def quicksort(lista):
 
     return quicksort(lower) + [pivo] + quicksort(bigger)
 
-
+# an alternative with less memory usage
 def better_quicksort(arr, left=0, right=None):
     if right is None:
         right = len(arr) - 1
@@ -94,33 +93,12 @@ def partition(arr, left, right):
     return i+1
 
 
-lista = [1, 2, 3, 4, 5, 6]
-l2 = [3, 5, 4, 1, 6, 9, 8, 7, 1, 6]
-print(sum(lista))
-print(soma(lista))
-print('-'*40)
-print(len(lista))
-print(conta(lista))
-print('-'*40)
-print(max(lista))
-print(maior_valor(lista))
-print('-'*40)
-print(binary_search(lista, 4))
-print(pesquisa_binaria_recursiva(lista, 4))
-print('-'*40)
-print(quicksort(l2))
-better_quicksort(l2)
-print(l2)
-print()
-print()
-
-
 def pessoa_e_vendedor(pessoa):
     if pessoa[-1] == 'm':
         return True
     return False
 
-
+# defining the graph as the author suggests
 grafo = {}
 
 grafo['voce'] = ['alice', 'bob', 'claire']
@@ -132,7 +110,7 @@ grafo['peggy'] = []
 grafo['thom'] = []
 grafo['jonny'] = []
 
-
+# Breadth-First Search (BFS), in Portuguese for now...
 def pesquisa_em_largura(nome):
     fila_de_pesquisa = deque()
     fila_de_pesquisa += grafo[nome]
@@ -151,7 +129,7 @@ def pesquisa_em_largura(nome):
 
 pesquisa_em_largura('voce')
 
-
+# completely manual configuration, for now, of a new graph
 grafo2: dict = {
     'a': {'b': 2, 'c': 6},
     'b': {'d': 7},
@@ -173,7 +151,7 @@ pais = {
 }
 analisados: list = []
 
-
+# take the direction with the lowest cost, also in Portuguese for now
 def pega_menor_caminho(custos: dict, analisados):
     menor_valor = float('inf')
     nodo_com_menor_custo = None
@@ -184,7 +162,7 @@ def pega_menor_caminho(custos: dict, analisados):
 
     return nodo_com_menor_custo
 
-
+# a somewhat improvised implementation of the dijkstra algorithm, also being worked on for a better version
 def dijkstra_algoritim(grafo, custos, pais, analisados):
     nodo = pega_menor_caminho(custos, analisados)
     while nodo is not None:
@@ -198,7 +176,7 @@ def dijkstra_algoritim(grafo, custos, pais, analisados):
         analisados.append(nodo)
         nodo = pega_menor_caminho(custos, analisados)
 
-
+# function to show the results
 def print_caminho(pais, custofinal, custos):
     for k, v in pais.items():
         print(f'{v} -> {k} | {custos[k]}')
@@ -208,6 +186,7 @@ def print_caminho(pais, custofinal, custos):
 dijkstra_algoritim(grafo2, custos, pais, analisados)
 print_caminho(pais, custos["e"], custos)
 
+# just some manual testing for now
 print('-'*40)
 
 grafo3: dict = {
@@ -236,6 +215,7 @@ analisados2: list = []
 dijkstra_algoritim(grafo3, custos2, pais2, analisados2)
 print_caminho(pais2, custos2["f"], custos2)
 
+# more tests
 print('-'*40)
 
 grafo4: dict = {
